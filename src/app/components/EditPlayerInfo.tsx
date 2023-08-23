@@ -83,6 +83,7 @@ const EditPlayerInfo: React.FC = () => {
     <div
       className='fixed bottom-0 left-0 right-0 flex justify-center items-center z-0 py-8'
       onClick={handleClick}
+      id='edit-player-container'
     >
       <div className='w-[500px] card card-side bg-base-100 shadow-xl rounded-none'>
         <div className='form-control w-full max-w-xs'>

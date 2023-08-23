@@ -25,6 +25,7 @@ export const SelectedPlayerProvider = ({
     const appContainer = document.querySelector('.app-container');
 
     if (appContainer && !appContainer.contains(event.target as Node)) {
+      console.log('clicked!');
       setSelectedPlayer(null);
     }
   };
@@ -32,13 +33,14 @@ export const SelectedPlayerProvider = ({
   const componentsContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const appContainer = document.querySelector('.app-container'); // Changed the target element
+    const appContainer = document.querySelector('.app-container');
 
     if (appContainer) {
+      console.log('if appcontainer');
       appContainer.addEventListener(
         'click',
         handleOutsideClick as EventListener
-      ); // Added event listener to the app-container
+      );
     }
 
     return () => {
@@ -46,7 +48,7 @@ export const SelectedPlayerProvider = ({
         appContainer.removeEventListener(
           'click',
           handleOutsideClick as EventListener
-        ); // Removed the event listener from the app-container when component unmounts
+        );
       }
     };
   }, []);
