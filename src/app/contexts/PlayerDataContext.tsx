@@ -10,17 +10,17 @@ const PlayerDataContext = createContext<PlayerDataContextType | undefined>(
 
 export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
   const [playerData, setPlayerData] = useState<Player[]>([]);
-
-  const updatePlayerData = (updatedPlayerData: Player[]) => {
-    setPlayerData(updatedPlayerData); // FIX ME
-  };
+  const [isSortingAsc, setIsSortingAsc] = useState<Boolean | null>(null);
 
   const calculateTotalDamage = (data: Player[]) => {
     return data.reduce((total, player) => total + player.damage, 0);
   };
 
+  const totalDamage = calculateTotalDamage(playerData);
+
+  // REPLACE BELOW USEEFFECT WITH THIS ONE IF API EXISTS
   // useEffect(() => {
-  //   fetch('../data/players.json')
+  //   fetch('/playerdata')
   //     .then((response) => response.json())
   //     .then((data) => {
   //       setPlayerData(data);
@@ -30,51 +30,95 @@ export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
   //     });
   // }, []);
 
-  const totalDamage = calculateTotalDamage(playerData);
+  useEffect(() => {
+    setPlayerData(originalData);
+  }, []);
 
   useEffect(() => {
-    setPlayerData([
-      {
-        player: 'SavageSniper',
-        date: '2023-08-15T08:30:00',
-        damage: 1200,
-        description:
-          'Secured a double kill with an amazing snipe in the CS:GO tournament.',
-      },
-      {
-        player: 'NinjaStorm',
-        date: '2023-08-16T15:45:00',
-        damage: 850,
-        description:
-          'Carried the team to victory with a pentakill in the League of Legends match.',
-      },
-      {
-        player: 'EpicGamer',
-        date: '2023-08-17T15:45:00',
-        damage: 670,
-        description:
-          'Dominating the leaderboard with a high K/D ratio in the Call of Duty championship.',
-      },
-      {
-        player: 'PixelWarrior',
-        date: '2023-08-18T15:45:00',
-        damage: 450,
-        description:
-          'Executed a pixel-perfect headshot in the Overwatch finals to clinch victory.',
-      },
-      {
-        player: 'StrategyKing',
-        date: '2023-08-19T15:45:00',
-        damage: 920,
-        description:
-          'Outsmarted opponents with ingenious tactics in a StarCraft II showdown.',
-      },
-    ]);
-  }, []);
+    calculateTotalDamage(playerData);
+  }, [playerData]);
+
+  const originalData = [
+    {
+      id: 'abc123',
+      player: 'SavageSniper',
+      date: '2023-08-15T08:30:00',
+      damage: 1200,
+      description:
+        'Secured a double kill with an amazing snipe in the CS:GO tournament.',
+    },
+    {
+      id: 'def456',
+      player: 'NinjaStorm',
+      date: '2023-08-16T15:45:00',
+      damage: 850,
+      description:
+        'Carried the team to victory with a pentakill in the League of Legends match.',
+    },
+    {
+      id: 'ghi789',
+      player: 'EpicGamer',
+      date: '2023-08-17T15:45:00',
+      damage: 670,
+      description:
+        'Dominating the leaderboard with a high K/D ratio in the Call of Duty championship.',
+    },
+    {
+      id: 'jkl012',
+      player: 'PixelWarrior',
+      date: '2023-08-18T15:45:00',
+      damage: 450,
+      description:
+        'Executed a pixel-perfect headshot in the Overwatch finals to clinch victory.',
+    },
+    {
+      id: 'mno345',
+      player: 'StrategyKing',
+      date: '2023-08-19T15:45:00',
+      damage: 920,
+      description:
+        'Outsmarted opponents with ingenious tactics in a StarCraft II showdown.',
+    },
+  ];
+
+  const updatePlayerData = (freshData: Player[]) => {
+    setPlayerData(freshData);
+  };
+
+  const sortPlayerData = () => {
+    const sortedData = [...playerData];
+    console.log(sortedData);
+    sortedData.sort((a, b) => {
+      const nameA = a.player.toUpperCase();
+      const nameB = b.player.toUpperCase();
+
+      if (isSortingAsc) {
+        return nameA.localeCompare(nameB);
+      } else {
+        return nameB.localeCompare(nameA);
+      }
+    });
+
+    setPlayerData(sortedData);
+    setIsSortingAsc(!isSortingAsc);
+    console.log(
+      'sort data clicked',
+      'ascending: ',
+      isSortingAsc,
+      'playerdata',
+      playerData
+    );
+  };
 
   return (
     <PlayerDataContext.Provider
-      value={{ totalDamage, playerData, updatePlayerData }}
+      value={{
+        totalDamage,
+        playerData,
+        updatePlayerData,
+        originalData,
+        sortPlayerData,
+      }}
     >
       {children}
     </PlayerDataContext.Provider>

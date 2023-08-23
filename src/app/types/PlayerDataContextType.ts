@@ -4,4 +4,6 @@ export type PlayerDataContextType = {
   playerData: Player[];
   updatePlayerData: (updatedPlayerData: Player[]) => void;
   totalDamage: number;
+  originalData: Player[];
+  sortPlayerData: () => void;
 };

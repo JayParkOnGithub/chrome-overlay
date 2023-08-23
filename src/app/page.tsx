@@ -10,9 +10,11 @@ export default function Home() {
     <main>
       <PlayerDataProvider>
         <SelectedPlayerProvider>
-          <Team />
-          <Graph />
-          <EditPlayerInfo />
+          <div className='app-container'>
+            <Team />
+            <Graph />
+            <EditPlayerInfo />
+          </div>
         </SelectedPlayerProvider>
       </PlayerDataProvider>
     </main>

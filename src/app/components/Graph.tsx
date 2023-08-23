@@ -9,7 +9,7 @@ const Graph = () => {
   const { playerData, totalDamage } = usePlayerData();
 
   const selectedPlayerData = playerData.find(
-    (player) => player.player === selectedPlayer
+    (player) => player.id === selectedPlayer
   );
 
   if (!selectedPlayerData) {

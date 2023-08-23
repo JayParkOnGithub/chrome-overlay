@@ -1,29 +1,34 @@
 [
   {
+    "id": "abc123",
     "player": "SavageSniper",
     "date": "2023-08-15T08:30:00",
     "damage": 1200,
     "description": "Secured a double kill with an amazing snipe in the CS:GO tournament."
   },
   {
+    "id": "def456",
     "player": "NinjaStorm",
     "date": "2023-08-16T15:45:00",
     "damage": 850,
     "description": "Carried the team to victory with a pentakill in the League of Legends match."
   },
   {
+    "id": "ghi789",
     "player": "EpicGamer",
     "date": "2023-08-17T15:45:00",
     "damage": 670,
     "description": "Dominating the leaderboard with a high K/D ratio in the Call of Duty championship."
   },
   {
+    "id": "jkl012",
     "player": "PixelWarrior",
     "date": "2023-08-18T15:45:00",
     "damage": 450,
     "description": "Executed a pixel-perfect headshot in the Overwatch finals to clinch victory."
   },
   {
+    "id": "mno345",
     "player": "StrategyKing",
     "date": "2023-08-19T15:45:00",
     "damage": 920,

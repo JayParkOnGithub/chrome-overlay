@@ -8,13 +8,13 @@ const PlayerCard: React.FC<{ data: Player }> = ({ data }) => {
   const { selectPlayer } = useSelectedPlayer();
 
   const playerClickHandler = () => {
-    selectPlayer(data.player);
+    selectPlayer(data.id);
   };
 
   return (
     <>
       <div
-        className='card card-side card-compact bg-base-100 divide-y cursor-auto'
+        className='card card-side card-compact bg-base-100 divide-y cursor-pointer'
         onClick={playerClickHandler}
       >
         <div className='avatar mt-5 ml-1'>
