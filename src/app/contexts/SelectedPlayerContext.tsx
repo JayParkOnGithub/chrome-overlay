@@ -17,6 +17,10 @@ export const SelectedPlayerProvider = ({
     setSelectedPlayer(playerId);
   };
 
+  const updateMouseOver = (bool: boolean): void => {
+    setIsMouseOver(bool);
+  };
+
   const handleOutsideClick = (event: MouseEvent) => {
     const appContainer = document.querySelector('.app-container');
 
@@ -50,7 +54,7 @@ export const SelectedPlayerProvider = ({
 
   return (
     <SelectedPlayerContext.Provider
-      value={{ selectedPlayer, selectPlayer, isMouseOver }}
+      value={{ selectedPlayer, selectPlayer, isMouseOver, updateMouseOver }}
     >
       <div ref={componentsContainerRef}>{children}</div>
     </SelectedPlayerContext.Provider>

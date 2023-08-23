@@ -19,7 +19,7 @@ const Graph = () => {
   return (
     <div className='fixed top-0 left-0 right-0 flex justify-center items-center z-0'>
       <div className='w-[800px] card card-side bg-base-100 shadow-xl rounded-none mt-5'>
-        <Image src={Avatar} alt='current avatar' width='200' />
+        <Image src={Avatar} alt='current avatar' width={200} />
         <div className='card-body h-full'>
           <h2 className='text-center text-xl font-semibold'>
             {selectedPlayerData?.player || 'Player Name'}

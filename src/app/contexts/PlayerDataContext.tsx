@@ -87,7 +87,6 @@ export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
 
   const sortPlayerData = () => {
     const sortedData = [...playerData];
-    console.log(sortedData);
     sortedData.sort((a, b) => {
       const nameA = a.player.toUpperCase();
       const nameB = b.player.toUpperCase();
@@ -101,13 +100,6 @@ export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
 
     setPlayerData(sortedData);
     setIsSortingAsc(!isSortingAsc);
-    console.log(
-      'sort data clicked',
-      'ascending: ',
-      isSortingAsc,
-      'playerdata',
-      playerData
-    );
   };
 
   return (

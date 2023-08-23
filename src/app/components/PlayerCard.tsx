@@ -3,7 +3,11 @@ import Avatar from '../assets/photos/avatar.jpg';
 import { useSelectedPlayer } from '../contexts/SelectedPlayerContext';
 import { Player } from '../types/Player';
 
-const PlayerCard: React.FC<{ data: Player }> = ({ data }) => {
+interface PlayerCardProps {
+  data: Player;
+}
+
+const PlayerCard: React.FC<PlayerCardProps> = ({ data }) => {
   const convertedDate: Date = new Date(data.date);
   const { selectPlayer } = useSelectedPlayer();
 
@@ -19,7 +23,7 @@ const PlayerCard: React.FC<{ data: Player }> = ({ data }) => {
       >
         <div className='avatar mt-5 ml-1'>
           <div className='w-10 h-10 rounded-full'>
-            <Image src={Avatar} alt='user image' width='10' height='10' />
+            <Image src={Avatar} alt='user image' width={10} height={10} />
           </div>
         </div>
         <div className='card-body'>

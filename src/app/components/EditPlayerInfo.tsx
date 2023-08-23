@@ -6,7 +6,8 @@ import { PlayerDataContextType } from '../types/PlayerDataContextType';
 import { SelectedPlayerContextType } from '../types/SelectedPlayerContextType';
 
 const EditPlayerInfo: React.FC = () => {
-  const { selectedPlayer } = useSelectedPlayer() as SelectedPlayerContextType;
+  const { selectedPlayer, updateMouseOver } =
+    useSelectedPlayer() as SelectedPlayerContextType;
   const { playerData, updatePlayerData, originalData, sortPlayerData } =
     usePlayerData() as PlayerDataContextType;
 
@@ -14,9 +15,8 @@ const EditPlayerInfo: React.FC = () => {
     (player) => player.id === selectedPlayer
   );
 
-  const handleClick = (event: Event) => {
-    console.log('clicked');
-    event.stopPropagation();
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    updateMouseOver(true);
   };
 
   const [tempUpdatedData, setTempUpdatedData] = useState<
@@ -66,7 +66,6 @@ const EditPlayerInfo: React.FC = () => {
       if (index !== -1) {
         const updatedPlayerData = [...playerData];
         updatedPlayerData[index] = { ...playerData[index], ...tempUpdatedData };
-        console.log(updatedPlayerData);
         updatePlayerData(updatedPlayerData);
       }
     }
@@ -74,7 +73,6 @@ const EditPlayerInfo: React.FC = () => {
 
   const handleCancelClick = () => {
     updatePlayerData(originalData);
-    console.log(playerData);
   };
 
   if (!selectedPlayer) {
