@@ -1,25 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { usePlayerData } from '../contexts/PlayerDataContext';
-import { useSelectedPlayer } from '../contexts/SelectedPlayerContext';
 import { Player } from '../types/Player';
 import PlayerCard from './PlayerCard';
 const Team: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { playerData } = usePlayerData();
-  const { isMouseOver } = useSelectedPlayer();
 
   const mouseOverHandler = () => {
     setIsVisible(true);
   };
-
-  useEffect(() => {
-    if (isMouseOver) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  }, [isMouseOver]);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {

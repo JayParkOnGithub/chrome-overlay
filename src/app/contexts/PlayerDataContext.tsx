@@ -31,11 +31,21 @@ export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
   // }, []);
 
   useEffect(() => {
-    setPlayerData(originalData);
+    const storedPlayerData = localStorage.getItem('players');
+
+    if (storedPlayerData) {
+      setPlayerData(JSON.parse(storedPlayerData));
+    } else {
+      setPlayerData(originalData);
+    }
   }, []);
 
   useEffect(() => {
     calculateTotalDamage(playerData);
+  }, [playerData]);
+
+  useEffect(() => {
+    localStorage.setItem('players', JSON.stringify(playerData));
   }, [playerData]);
 
   const originalData = [
@@ -92,9 +102,9 @@ export const PlayerDataProvider = ({ children }: PlayerDataProviderProps) => {
       const nameB = b.player.toUpperCase();
 
       if (isSortingAsc) {
-        return nameA.localeCompare(nameB);
-      } else {
         return nameB.localeCompare(nameA);
+      } else {
+        return nameA.localeCompare(nameB);
       }
     });
 

@@ -26,7 +26,6 @@ export const SelectedPlayerProvider = ({
 
     if (appContainer && !appContainer.contains(event.target as Node)) {
       setSelectedPlayer(null);
-      setIsMouseOver(false);
     }
   };
 
