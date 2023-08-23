@@ -57,7 +57,9 @@ export const SelectedPlayerProvider = ({
     <SelectedPlayerContext.Provider
       value={{ selectedPlayer, selectPlayer, isMouseOver, updateMouseOver }}
     >
-      <div ref={componentsContainerRef}>{children}</div>
+      <div ref={componentsContainerRef} id='app-container'>
+        {children}
+      </div>
     </SelectedPlayerContext.Provider>
   );
 };

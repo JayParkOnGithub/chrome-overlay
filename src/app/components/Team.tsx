@@ -7,7 +7,7 @@ import PlayerCard from './PlayerCard';
 const Team: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { playerData } = usePlayerData();
-  const { isMouseOver } = useSelectedPlayer();
+  const { isMouseOver, selectPlayer } = useSelectedPlayer();
 
   const mouseOverHandler = () => {
     setIsVisible(true);
@@ -26,8 +26,8 @@ const Team: React.FC = () => {
         editPlayerContainer &&
         !editPlayerContainer.contains(event.target as Node)
       ) {
-        console.log('clicked outside');
         setIsVisible(false);
+        selectPlayer('');
       }
     };
 
